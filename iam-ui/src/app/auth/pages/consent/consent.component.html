@@ -1,0 +1,66 @@
+<div class="space-y-6">
+  <!-- App Info Header -->
+  <div class="text-center pb-4 border-b border-slate-200">
+    <div class="mx-auto h-16 w-16 bg-indigo-100 rounded-full flex items-center justify-center mb-4">
+       <!-- Placeholder Icona App -->
+       <span class="text-2xl font-bold text-indigo-600">FP</span>
+    </div>
+    <h3 class="text-lg font-medium text-slate-900">
+      <span class="font-bold">FloorPlan Pro</span> richiede accesso
+    </h3>
+    <p class="text-sm text-slate-500 mt-1">
+      Questa applicazione vuole accedere al tuo account <span class="font-semibold text-slate-700">mario.rossi example.com</span>
+    </p>
+  </div>
+
+  <!-- Scopes List -->
+  <div class="bg-slate-50 rounded-lg p-4">
+    <h4 class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Permessi richiesti</h4>
+    <ul class="space-y-3">
+      <!-- Item 1 -->
+      <li class="flex items-start">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <div class="ml-3 text-sm">
+          <span class="font-medium text-slate-900">Profilo Personale</span>
+          <p class="text-slate-500">Visualizzare nome, email e foto profilo.</p>
+        </div>
+      </li>
+      <!-- Item 2 -->
+      <li class="flex items-start">
+        <div class="flex-shrink-0">
+          <svg class="h-5 w-5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+          </svg>
+        </div>
+        <div class="ml-3 text-sm">
+          <span class="font-medium text-slate-900">Gestione Progetti</span>
+          <p class="text-slate-500">Creare e modificare planimetrie a tuo nome.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="flex gap-3 pt-2">
+    <button 
+      (click)="deny()"
+      class="flex-1 py-2 px-4 border border-slate-300 rounded-md shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
+    >
+      Nega
+    </button>
+    <button 
+      (click)="allow()"
+      class="flex-1 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
+    >
+      Consenti
+    </button>
+  </div>
+  
+  <p class="text-xs text-center text-slate-400 mt-4">
+    Verrai reindirizzato a <code>https://app.floorplanpro.com/callback</code>
+  </p>
+</div>
