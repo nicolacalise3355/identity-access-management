@@ -2,7 +2,5 @@
 Identify and Access Management
 
 run..
-chmod +x install.sh start.sh
+chmod +x install.sh start.sh update-configs.sh
 
-#todo 
-defined script for config
