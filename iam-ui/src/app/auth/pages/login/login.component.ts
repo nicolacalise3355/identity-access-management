@@ -34,7 +34,7 @@ export default class LoginComponent {
       setTimeout(() => {
         console.log('Login Payload:', this.loginForm.value);
         this.isLoading.set(false);
-        this.router.navigate(['/admin/dashboard']);
+        //this.router.navigate(['/admin/dashboard']);
       }, 1500);
     }
   }
