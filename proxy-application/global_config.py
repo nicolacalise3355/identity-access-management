@@ -1,2 +1,2 @@
 # AUTO-GENERATED FILE
-APPLICATION_URI = "localhost:4200"
+APPLICATION_URI = "http://localhost:4200"

@@ -35,5 +35,6 @@ echo "✅ Backend config generated: $PYTHON_DEST (URI: $APP_URI)"
 mkdir -p "$(dirname "$TS_DEST")"
 
 echo "// AUTO-GENERATED FILE" > "$TS_DEST"
+echo "export const LOGIN_REDIRECT_URI = \"$LOGIN_REDIRECT_URI\";" > "$TS_DEST"
 echo "export const BACKEND_URI = \"$BACKEND_URI\";" >> "$TS_DEST"
 echo "✅ Frontend config generated: $TS_DEST (URI: $BACKEND_URI)"

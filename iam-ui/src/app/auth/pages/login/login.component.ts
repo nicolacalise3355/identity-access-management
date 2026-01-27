@@ -2,16 +2,22 @@ import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http'; // Importante se non è globale
+import { AuthService } from '../../service/auth.service';
+import { LOGIN_REDIRECT_URI } from '../../../../global_config';
+import { SessionService } from '../../service/session.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, HttpClientModule],
   templateUrl: 'login.component.html'
 })
 export default class LoginComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
+  private authService = inject(AuthService);
+  private sessionService = inject(SessionService)
   
   isLoading = signal(false);
   errorMessage = signal<string | null>(null);
@@ -31,11 +37,26 @@ export default class LoginComponent {
       this.isLoading.set(true);
       this.errorMessage.set(null);
 
-      setTimeout(() => {
-        console.log('Login Payload:', this.loginForm.value);
-        this.isLoading.set(false);
-        //this.router.navigate(['/admin/dashboard']);
-      }, 1500);
+      this.authService.login(this.loginForm.value).subscribe({
+        next: (response) => {
+          
+          //TODO: Enable
+          //this.sessionService.saveSession(response);
+
+          this.isLoading.set(false);
+          this.router.navigate([LOGIN_REDIRECT_URI]);
+        },
+        error: (err) => {
+          console.error('Errore login:', err);
+          this.isLoading.set(false);
+          
+          if (err.status === 401) {
+            this.errorMessage.set('Credenziali non valide. Riprova.');
+          } else {
+            this.errorMessage.set('Si è verificato un errore di connessione.');
+          }
+        }
+      });
     }
   }
 }

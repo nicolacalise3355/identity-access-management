@@ -12,7 +12,7 @@ trap cleanup SIGINT SIGTERM
 echo "Starting Backend..."
 cd proxy-application
 source venv/bin/activate
-python -m app.main &
+python -m main &
 BACKEND_PID=$!
 cd ..
 
