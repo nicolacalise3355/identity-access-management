@@ -1,17 +1,20 @@
-from models.entities import User
+from models.models import User
+from services.log_service import LogService
 
 class AuthService:
-    def __init__(self):
-        # In futuro inietterai qui il repository del DB (es. UserRepository)
-        pass
+    def __init__(self, db):
+        self.db = db
+        self.log_service = LogService(db)
 
-    async def authenticate_user(self, email: str, password: str) -> User:
-        """
-        This part must be changed with the real login to the backend application
-        """
-        print(f"--- MOCK AUTH ---")
-        print(f"Login for: {email}")
-        print(f"-------------------")
+    async def authenticate_user(self, email: str, password: str) -> User | None:
+        user_doc = await self.db.users.find_one({"email": email})
+
+        if not user_doc or user_doc.get("psw") != password:
+            if user_doc:
+                await self.log_service.create_log(str(user_doc["_id"]), "FAILED_LOGIN")
+            return None
+
+        await self.log_service.create_log(str(user_doc["_id"]), "SUCCESS_LOGIN")
         
-        # Simuliamo un successo
-        return User(email=email)
+        updated_user_doc = await self.db.users.find_one({"_id": user_doc["_id"]})
+        return User(**updated_user_doc)

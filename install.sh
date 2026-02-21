@@ -17,12 +17,12 @@ echo "--------------------------------------"
 echo "🐍 deps install for Backend (proxy-application)..."
 cd proxy-application
 
-if [ ! -d "venv" ]; then
+if [ ! -d ".venv" ]; then
     echo "Creating Python virtual environment..."
-    python3 -m venv venv
+    python3 -m venv .venv
 fi
 
-source venv/bin/activate
+source .venv/bin/activate
 pip install -r requirements.txt
 cd ..
 

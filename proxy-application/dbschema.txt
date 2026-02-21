@@ -1,0 +1,13 @@
+
+USERS
+- id
+- email
+- psw 
+
+LOGS
+- id 
+- user_id
+- timestamp
+- status
+
+

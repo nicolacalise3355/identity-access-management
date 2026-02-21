@@ -1,8 +1,8 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http'; // Importante se non è globale
+import { Router } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from '../../service/auth.service';
 import { LOGIN_REDIRECT_URI } from '../../../../global_config';
 import { SessionService } from '../../service/session.service';
@@ -10,7 +10,7 @@ import { SessionService } from '../../service/session.service';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink, HttpClientModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: 'login.component.html'
 })
 export default class LoginComponent {
